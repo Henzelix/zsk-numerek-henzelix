@@ -30,5 +30,6 @@ var result;
     await fs.writeFile("index.html", JSON.stringify(result));
     console.log(JSON.stringify(result));
     } catch(e){
+        console.log(e);
     }
 })();
