@@ -3,7 +3,7 @@ const fs = require('fs').promises;
 var technikum;
 var liceum;
 var output;
-var out;
+var result;
 (async () => {
     const d = new Date();
     if (d.getDay() == 0 || d.getDay() == 6) {
@@ -26,6 +26,6 @@ var out;
         await browser.close();
     }
     try {await fs.stat("output")} catch(e)
-    out = {LO: liceum, TK: technikum, date: d.toString()};
-    await fs.writeFile("index.html", JSON.stringify(out));
+    result = {LO: liceum, TK: technikum, date: d.toString()};
+    await fs.writeFile("index.html", JSON.stringify(result));
 })();
