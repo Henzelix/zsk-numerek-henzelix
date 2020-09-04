@@ -28,6 +28,7 @@ var result;
     try {await fs.stat("output");
     result = {LO: liceum, TK: technikum, date: d.toString()};
     await fs.writeFile("index.html", JSON.stringify(result));
+    console.log(JSON.stringify(result));
     } catch(e){
     }
 })();
