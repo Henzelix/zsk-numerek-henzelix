@@ -3,6 +3,7 @@ const fs = require('fs').promises;
 var technikum;
 var liceum;
 var output;
+var result;
 (async () => {
     const d = new Date();
     if (d.getDay() == 0 || d.getDay() == 6) {
@@ -24,7 +25,9 @@ var output;
         technikum = parseInt(output["data"][0]["Zawartosc"][1]["Zawartosc"][0]["Nazwa"].match(/..$/));
         await browser.close();
     }
-    try {await fs.stat("output")} catch(e)
-    const result = {LO: liceum, TK: technikum, date: d.toString()};
+    try {await fs.stat("output");
+    result = {LO: liceum, TK: technikum, date: d.toString()};
     await fs.writeFile("index.html", JSON.stringify(result));
+    } catch(e){
+    }
 })();
