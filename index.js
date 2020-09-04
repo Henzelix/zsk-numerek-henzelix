@@ -22,6 +22,6 @@ const fs = require('fs').promises;
         await browser.close();
     }
     try {await fs.stat("output")} catch(e)
-    out = {LO: liceum, TK: technikum, date: d.toString()};
+    String out = {LO: liceum, TK: technikum, date: d.toString()};
     await fs.writeFile("index.html", JSON.stringify(out));
 })();
