@@ -3,8 +3,8 @@ const fs = require('fs').promises;
 (async () => {
     const d = new Date();
     if (d.getDay() == 0 || d.getDay() == 6) {
-        var liceum = 0;
-        var technikum = 0;
+        liceum = 0;
+        technikum = 0;
     } else {
         const browser = await puppeteer.launch({executablePath: process.env.PUPPETEER_EXEC_PATH, headless: false, args:["--no-sandbox"]});
         const page = await browser.newPage();
@@ -16,9 +16,9 @@ const fs = require('fs').promises;
         await page.click('input[type="submit"]');
         await page.waitForNavigation();
         await page.goto("https://uonetplus.vulcan.net.pl/poznan/Start.mvc/GetTeacherLuckyNumbers")
-        var output = JSON.parse(await page.evaluate(() => document.querySelector("body").innerText));
-        var liceum = parseInt(output["data"][0]["Zawartosc"][0]["Zawartosc"][0]["Nazwa"].match(/..$/));
-        var technikum = parseInt(output["data"][0]["Zawartosc"][1]["Zawartosc"][0]["Nazwa"].match(/..$/));
+        output = JSON.parse(await page.evaluate(() => document.querySelector("body").innerText));
+        liceum = parseInt(output["data"][0]["Zawartosc"][0]["Zawartosc"][0]["Nazwa"].match(/..$/));
+        technikum = parseInt(output["data"][0]["Zawartosc"][1]["Zawartosc"][0]["Nazwa"].match(/..$/));
         await browser.close();
     }
     try {await fs.stat("output")} catch(e)
