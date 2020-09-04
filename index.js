@@ -1,5 +1,9 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
+var technikum;
+var liceum;
+var output;
+var out;
 (async () => {
     const d = new Date();
     if (d.getDay() == 0 || d.getDay() == 6) {
@@ -22,6 +26,6 @@ const fs = require('fs').promises;
         await browser.close();
     }
     try {await fs.stat("output")} catch(e)
-    String out = {LO: liceum, TK: technikum, date: d.toString()};
+    out = {LO: liceum, TK: technikum, date: d.toString()};
     await fs.writeFile("index.html", JSON.stringify(out));
 })();
