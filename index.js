@@ -21,7 +21,7 @@ const fs = require('fs').promises;
         var technikum = parseInt(output["data"][0]["Zawartosc"][1]["Zawartosc"][0]["Nazwa"].match(/..$/));
         await browser.close();
     }
-    try {await fs.stat("output")} catch(e) {if (e.code == "ENOENT")};
+    try {await fs.stat("output")} catch(e);
     var out = {LO: liceum, TK: technikum, date: d.toString()};
     await fs.writeFile("index.html", JSON.stringify(out));
 })();
